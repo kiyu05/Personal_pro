@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fireworks Display</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+  font-weight: 700; /* For bold headings */
+    }
+
+    /* Centered text */
+    .center-text {
+      position: absolute;
+      
+      text-align: center;
+      z-index: 10;
+      animation: fadeIn 3s ease-out forwards;
+      color: white ;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 
+                1px 1px 1px #000,
+                1px 2px 1px #000,
+                1px 3px 1px #333,
+                1px 4px 1px #333;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .firework {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.8);
+      animation: explode 1.5s ease-out forwards;
+    }
+
+    @keyframes explode {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(10);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Center text -->
+  <div class="center-text">
+    THIS IS HOW YOU FILL MY LIFE WITH COLORS!!
+  </div>
+
+  <script>
+    // Fireworks logic
+    function createFirework(x, y) {
+      const firework = document.createElement('div');
+      firework.classList.add('firework');
+      document.body.appendChild(firework);
+
+      const colors = ['#ff007f', '#ff6600', '#00ff00', '#0066ff', '#ffcc00'];
+      firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+      const particles = Math.floor(Math.random() * 20) + 10;
+
+      // Random explosion direction
+      for (let i = 0; i < particles; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('firework');
+        document.body.appendChild(particle);
+
+        const angle = Math.random() * 360;
+        const distance = Math.random() * 200 + 50;
+        const particleX = x + Math.cos(angle) * distance;
+        const particleY = y + Math.sin(angle) * distance;
+        const duration = Math.random() * 1 + 0.5;
+
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+        particle.style.animation = `explode ${duration}s ease-out forwards`;
+
+        particle.style.left = `${particleX}px`;
+        particle.style.top = `${particleY}px`;
+        particle.style.animationDelay = `${Math.random() * 2}s`;
+        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      // Remove fireworks after animation
+      setTimeout(() => {
+        firework.remove();
+      }, 1500);
+    }
+
+    // Trigger fireworks on mouse click
+    document.addEventListener('click', (e) => {
+      createFirework(e.clientX, e.clientY);
+    });
+
+    // Trigger fireworks at random positions every 1 second
+    setInterval(() => {
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+      createFirework(x, y);
+    }, 1000);
+  </script>
+</body>
+</html>

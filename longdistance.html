@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=East+Sea+Dokdo&family=Honk&family=IM+Fell+French+Canon+SC&family=Kings&family=Mea+Culpa&family=Pinyon+Script&family=Stylish&family=Yatra+One&display=swap" rel="stylesheet">
+  <title>Map</title>
+  <style>
+    :root {
+      --bg-color: #f0f8ff;
+      --heart-color: red;
+      --glow-color: rgba(252, 8, 231, 0.6); /* Glowing effect */
+      --text-color: #444;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background: var(--bg-color);
+      font-family: Tahoma, sans-serif;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      
+      background: url('https://th.bing.com/th/id/OIP.u5WIayoFxU1Nm-IM8bLJFAHaEK?w=324&h=182&c=7&r=0&o=5&dpr=1.5&pid=1.7') no-repeat center center/cover;
+    }
+
+    .container {
+      display: flex;
+    }
+
+    .text-section {
+      display: flex; /* Make it a flex container */
+      justify-content: center; /* Horizontally center the text */
+      align-items: center; /* Vertically center the text */
+      flex-direction: column; /* Stack child elements vertically */
+      flex: 1; /* Allow text to fill the remaining space */
+      padding: 20px;
+      color: var(--text-color);
+      margin: 0 auto; /* Center the section itself */
+      
+      font-size: 1.1rem;
+      text-align: center; /* Align text to the center */
+
+      font-family: "East Sea Dokdo", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+    
+    .map {
+      position: relative;
+      width: 28%; /* Adjust width as needed */
+      max-width: 800px;
+      height: 500px;
+      background: url('https://th.bing.com/th/id/OIP.CXAiErnWBw7AUP4boWR7zAAAAA?rs=1&pid=ImgDetMain') no-repeat center;
+      background-size: cover;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      margin-left: 100px; /* Move map to the right */
+      margin-top: 30px; /* Reduced margin-top for the map */
+      margin-right: 170px; /* Move map to the right */
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 1.3rem; /* Increase the heart size */
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        transform: scale(1.5);
+        opacity: 1;
+      }
+    }
+
+    /* Position hearts for Bidar and Bangalore */
+    .bidar {
+      top: 4%;
+      left: 66%;
+    }
+
+    .bangalore {
+      top: 82%;
+      left: 71%;
+    }
+
+    /* Dotted line */
+    .dotted-line {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: 2px dotted red;
+      transform-origin: top left;
+      transform: rotate(88deg); /* Adjust based on coordinates */
+      top: 5%;
+      left: 71%;
+      width: 130%; /* Adjust width to connect hearts */
+    }
+
+    .gif-container {
+      margin-top: 20px; /* Adds space between text and GIF */
+      text-align: center;
+    }
+
+    .gif-container img {
+      max-width: 150%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+
+    @media (max-width: 768px) {
+      .map {
+        width: 80%;
+        height: auto;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    
+      .text-section {
+        font-size: 1rem; /* Slightly reduce text size */
+        padding: 10px; /* Reduce padding */
+      }
+    
+      .gif-container img {
+        max-width: 100%; /* Scale GIF to fit smaller screens */
+      }
+    
+      .dotted-line {
+        width: 100%; /* Adjust width for smaller screens */
+        transform: rotate(92deg); /* Re-adjust for mobile if necessary */
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .bidar {
+        top: 8%;
+        left: 60%;
+      }
+    
+      .bangalore {
+        top: 80%;
+        left: 65%;
+      }
+    
+      .dotted-line {
+        transform: rotate(93deg); /* Adjust rotation as needed */
+        width: 120%; /* Ensure line connects properly */
+      }
+    }
+    
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="text-section">
+      <p>Even though miles separate us 🌍, my heart is always with you ❤️. Each day without you feels incomplete, but I cherish 
+        every moment we share, even from a distance 💌. The late-night sweet messages, video calls, and knowing you're just a 
+        text away makes everything better 📱. I may not be there physically,
+        but you're always in my thoughts. Our love is strong enough to bridge any distance, 
+        and I can’t wait until the day we’re together again 🥰. Until then, I’ll hold onto our 
+        memories and keep loving you more each day. I LOVE YOU!!!!!💖.</p>
+      
+      <!-- GIF added here -->
+      <div class="gif-container">
+        <img src="https://i.pinimg.com/originals/51/58/0e/51580e0ba38c20fad5b1d54c9c271695.gif" alt="Love GIF">
+      </div>
+    </div>
+    <div class="map">
+      <div class="heart bidar">❤️</div>
+      <div class="heart bangalore">❤️</div>
+      <div class="dotted-line"></div> <!-- Add the dotted line here -->
+    </div>
+  </div>
+</body>
+</html>

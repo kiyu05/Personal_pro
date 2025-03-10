@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4x4 Drag and Drop Puzzle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=East+Sea+Dokdo&family=Honk&family=IM+Fell+French+Canon+SC&family=Kings&family=Mea+Culpa&family=Pinyon+Script&family=Stylish&family=Yatra+One&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Stylish&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: URL('https://th.bing.com/th/id/OIP.u5WIayoFxU1Nm-IM8bLJFAHaEK?w=324&h=182&c=7&r=0&o=5&dpr=1.5&pid=1.7');
+      flex-direction: column;
+      gap: 20px;
+      overflow: hidden;
+    }
+
+    #container {
+      display: flex;
+      gap: 20px;
+    }
+
+    #originalImage {
+        width: 150px;  /* Decrease the width as needed */
+        height: 150px; /* Decrease the height as needed */
+        border: 2px solid #000;
+        background-size: contain;  /* This ensures the image is resized proportionally */
+        background-position: center; /* This centers the image */
+        margin-left: 80px;
+      }
+      
+
+    #puzzleBox {
+      width: 400px;
+      height: 400px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 5px;
+      background-color: #fff;
+      border: 2px solid #000;
+    }
+
+    .puzzlePiece {
+      width: 100%;
+      height: 100%;
+      background-size: 400px 400px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+    }
+
+    .puzzlePiece:active {
+      transform: scale(0.95);
+    }
+
+    #puzzlePieces {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 5px;
+      width: 400px;
+      height: 400px;
+    }
+
+    .piece {
+      width: 100%;
+      height: 100%;
+      background-size: 400px 400px;
+      cursor: pointer;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    .piece.hidden {
+      opacity: 0;
+    }
+
+   
+  
+
+    h3{
+      font-family: 'Arial', sans-serif;  /* Change to any font family you like */
+      font-size: 20px;     
+      text-align: center;              /* Adjust the font size as needed */
+      margin-left: 80px;
+    }
+    h6{
+      font-family: 'Arial', sans-serif;  /* Change to any font family you like */
+      font-size: 12px;    
+      text-align: center;               /* Adjust the font size as needed */
+      margin-left: 80px;
+    }
+   
+    .message {
+      font-family: 'Charm', serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 18px;  /* Adjust the size as needed */
+      text-align: center;
+      display: none;  /* Ensure the message is hidden initially */
+      margin-left: 80px;
+    }
+    
+    #shuffleButton {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 13px;
+      cursor: pointer;
+      background-color: #115d82;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-left: 80px;
+    }
+    
+    #shuffleButton:hover {
+      background-color: #45a049;
+    }
+    
+   
+    
+  </style>
+</head>
+<body>
+ 
+
+  <div id="container">
+    <div>
+      <div id="originalImage"></div>
+      <h3>Original Image</h3>
+      <h6>Hint: If the tile doesn't <br>
+        belong there, it won't fit. <br>
+        The tile will be placed only if it <br>
+        is in the correct position.</h6>
+      <div style="text-align: center; margin-top: 1px;">
+        <button id="shuffleButton">Shuffle</button>
+      </div>
+    </div>
+  
+    <div>
+      <div id="puzzleBox"></div>
+      <!-- Message container -->
+      <div id="message" style="text-align: center; display: none; font-family: 'Charm', serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 18px;  /* Adjust the size as needed */
+      text-align: center;
+      display: none;  /* Ensure the message is hidden initially */">
+        Congratulations baby! 🎉 <br>
+        Now promise me that you'll help me solve every <br>
+        problem of mine, just like you did now.🤞💖
+      </div>
+    </div>
+  
+    <div id="puzzlePieces"></div>
+  </div>
+  
+
+
+
+<script>
+  const imageSrc = 'https://i.pinimg.com/736x/47/4c/ac/474caced0b9731e8dcc2b2af111222df.jpg';
+
+  const puzzleBox = document.getElementById('puzzleBox');
+  const puzzlePiecesContainer = document.getElementById('puzzlePieces');
+  const originalImage = document.getElementById('originalImage');
+  const message = document.getElementById('message');
+
+  originalImage.style.backgroundImage = `url(${imageSrc})`;
+  originalImage.style.backgroundSize = '150px 150px';
+
+  const pieces = [];
+  const positions = [];
+
+  // Create 16 pieces for the puzzle (4x4 grid)
+  for (let i = 0; i < 16; i++) {
+    const row = Math.floor(i / 4);
+    const col = i % 4;
+    pieces.push({
+      id: i,
+      left: col * 100,
+      top: row * 100,
+      row,
+      col,
+    });
+    positions.push(i);
+  }
+
+  // Shuffle pieces randomly
+  const shufflePieces = () => {
+    for (let i = positions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [positions[i], positions[j]] = [positions[j], positions[i]];
+    }
+  };
+
+  // Create a draggable piece
+  const createPuzzlePiece = (piece) => {
+    const div = document.createElement('div');
+    div.classList.add('piece');
+    div.style.backgroundImage = `url(${imageSrc})`;
+    div.style.backgroundSize = '400px 400px';
+    div.style.backgroundPosition = `-${piece.left}px -${piece.top}px`;
+    div.setAttribute('draggable', true);
+    div.setAttribute('data-id', piece.id);
+    div.setAttribute('data-row', piece.row);
+    div.setAttribute('data-col', piece.col);
+    div.addEventListener('dragstart', (e) => {
+      e.dataTransfer.setData('text', piece.id);
+    });
+    puzzlePiecesContainer.appendChild(div);
+  };
+
+  // Create an empty slot in the puzzle box where pieces can be dropped
+  const createEmptyPuzzleBoxSlot = (row, col) => {
+    const div = document.createElement('div');
+    div.classList.add('puzzlePiece');
+    div.setAttribute('data-row', row);
+    div.setAttribute('data-col', col);
+
+    // Allow pieces to be dropped in the empty slot
+    div.addEventListener('dragover', (e) => {
+      e.preventDefault();
+    });
+    div.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const pieceId = e.dataTransfer.getData('text');
+      const piece = pieces.find((p) => p.id === parseInt(pieceId));
+      const slot = e.target;
+
+      const slotRow = slot.getAttribute('data-row');
+      const slotCol = slot.getAttribute('data-col');
+      
+      if (parseInt(slotRow) === piece.row && parseInt(slotCol) === piece.col) {
+        slot.style.backgroundImage = `url(${imageSrc})`;
+        slot.style.backgroundPosition = `-${piece.left}px -${piece.top}px`;
+        slot.classList.remove('puzzlePiece');
+        slot.setAttribute('data-id', piece.id);
+
+        // Fade the piece out from the puzzlePieces container
+        const pieceDiv = document.querySelector(`.piece[data-id="${piece.id}"]`);
+        pieceDiv.classList.add('hidden');
+        
+        // Check if all pieces are placed
+        const remainingPieces = document.querySelectorAll('.piece:not(.hidden)');
+        if (remainingPieces.length === 0) {
+          // Show congratulatory message
+          message.style.display = 'block';
+        }
+      }
+    });
+
+    return div;
+  };
+
+  // Setup puzzle: shuffle pieces and place them in the puzzle box
+  const setupPuzzle = () => {
+    shufflePieces();
+    
+    // Create a 4x4 grid for the puzzle box (right side)
+    for (let i = 0; i < 16; i++) {
+      const row = Math.floor(i / 4);
+      const col = i % 4;
+      const slot = createEmptyPuzzleBoxSlot(row, col);
+      puzzleBox.appendChild(slot);
+    }
+
+    // Place shuffled pieces in the puzzle pieces container for the user to drag
+    pieces.forEach((piece, index) => {
+      const shuffledPiece = pieces[positions[index]];
+      createPuzzlePiece(shuffledPiece);
+    });
+  };
+
+  setupPuzzle();
+
+
+// JavaScript for the shuffle functionality
+const shuffleButton = document.getElementById("shuffleButton");
+
+const shuffleTiles = () => {
+  // Clear the puzzle box and message
+  puzzleBox.innerHTML = "";
+  puzzlePiecesContainer.innerHTML = "";
+  message.style.display = "none";
+
+  // Shuffle the pieces array
+  shufflePieces();
+
+  // Reset the puzzle box grid
+  for (let i = 0; i < 16; i++) {
+    const row = Math.floor(i / 4);
+    const col = i % 4;
+    const slot = createEmptyPuzzleBoxSlot(row, col);
+    puzzleBox.appendChild(slot);
+  }
+
+  // Reattach shuffled tiles to the puzzle pieces container
+  pieces.forEach((piece, index) => {
+    const shuffledPiece = pieces[positions[index]];
+    createPuzzlePiece(shuffledPiece);
+  });
+};
+
+// Add event listener for shuffle button
+shuffleButton.addEventListener("click", shuffleTiles);
+
+// Check if all pieces are placed
+const remainingPieces = document.querySelectorAll('.piece:not(.hidden)');
+if (remainingPieces.length === 0) {
+  // Show congratulatory message
+  const message = document.getElementById('message');
+  message.style.display = 'block';
+}
+
+
+
+
+</script>
+
+</body>
+</html>

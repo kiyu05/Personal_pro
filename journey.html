@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>journey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=East+Sea+Dokdo&family=Honk&family=IM+Fell+French+Canon+SC&family=Kings&family=Mea+Culpa&family=Pinyon+Script&family=Stylish&family=Yatra+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            
+            font-family: "East Sea Dokdo", serif;
+  font-weight: 400;
+  font-style: normal;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+overflow: hidden;
+background: url('https://th.bing.com/th/id/OIP.u5WIayoFxU1Nm-IM8bLJFAHaEK?w=324&h=182&c=7&r=0&o=5&dpr=1.5&pid=1.7') no-repeat center center/cover;
+
+
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            max-width: 1200px; /* Desktop limit */
+width: 90%; /* Relative width for responsiveness */
+
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: #352fa3;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .timeline-step {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 2;
+            max-width: 150px;
+        }
+
+        .timeline-step img {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-step p {
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 0;
+            font-size: 0.6rem;
+        }
+
+        .timeline-step span {
+            font-size: 1.5em;
+            font-weight: bold;
+            background-color: #fff;
+            color: #333;
+            border: 2px solid #6C63FF;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            font-size: 1.5rem;
+        }
+        
+        
+
+        /* For odd steps: Image above the line, text below */
+        .timeline-step:nth-child(odd) {
+            justify-content: flex-start;
+        }
+
+        .timeline-step:nth-child(odd) img {
+            order: 1;
+        }
+
+        .timeline-step:nth-child(odd) p {
+            order: 2;
+            margin-top: 10px;
+        }
+
+        /* For even steps: Text above the line, image below */
+        .timeline-step:nth-child(even) {
+            justify-content: flex-end;
+        }
+
+        .timeline-step:nth-child(even) p {
+            order: 1;
+            margin-bottom: 10px;
+        }
+
+        .timeline-step:nth-child(even) img {
+            order: 2;
+            
+        }
+        .timeline-step img {
+            margin-top: 130px; /* Space between the image and the circle */
+            margin-bottom: 100px; /* Space below the image */
+        }
+        
+        .timeline-step p {
+            margin-top: 100px; /* Space above the text */
+            margin-bottom: 100px; /* Space between the text and the circle */
+        }
+        
+
+        
+           
+        
+    </style>
+</head>
+<body>
+    <div class="timeline">
+        <div class="timeline-step">
+            <p>I’m not sure when you first noticed me, but for me, it was during Holi. You were with Suman and another boy, and I applied colors without realizing you'd become my boyfriend 💑, my love ❤️, my best friend 🤗, my world 🌍</p>
+            <span>❤️</span>
+            <img src="https://th.bing.com/th/id/OIP.6kMOEWBLhBMfiUF200fpOwHaH6?w=160&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Step 1">
+        </div>
+        <div class="timeline-step">
+            <span>❤️</span>
+            <p>Then, after joining B.Tech, we started dating. It was long distance, but totally worth it. 🌙 Late-night calls, messages, video calls, and waiting for our first meet-up. 💌💻💖</p>
+            <img src="https://th.bing.com/th/id/OIP.7xRM4t_B1u_JdD7VJmOlXAHaEO?w=291&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Step 2">
+        </div>
+        <div class="timeline-step">
+            <img src="https://img.freepik.com/premium-vector/family-reunion-isolated-cartoon-vector-illustration_107173-23451.jpg?w=2000" alt="Step 3">
+            <span>❤️</span>
+            <p>First meet—who wouldn't be excited? 😄 My hands were shivering, but the day was perfect. 📸 We took pics, hugged each other, and spent a few perfect hours together. 🤗💖Also, the first meet with family—I just love them! ❤️👨‍👩‍👧‍👦</p>
+        </div>
+        <div class="timeline-step">
+            <span>❤️</span>
+            <p>Our first wedding function together 🥰💍✨. It was such a special moment as we attended our first event as a couple 💑. From the excitement of getting ready 👗🤵 to sharing laughs and making memories 🥳🎉, it was a day full of love and joy.</p>
+            <img src="https://th.bing.com/th/id/OIP.HjijjHeBN_QhwBPJZRgVugHaJ8?w=134&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Step 4">
+        </div>
+        <div class="timeline-step">
+            <p>Then something happened that shouldn’t have – we broke up 💔. We went our separate ways, learning to wake up and sleep without each other’s messages 😔. But God had different plans ✨
+            </p>
+            <span>❤️</span>
+            <img src="https://th.bing.com/th/id/OIP.TtFZY9dWleklMdTqXbRocQHaH0?w=200&h=211&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Step 5">
+        </div>
+        <div class="timeline-step">
+            <span>❤️</span>
+            <p>Of course, we can't stay away from each other 😔, so we chose to patch things up 💕, met again, and are working together to make everything better for our future 🌟
+            </p>
+            <img src="https://th.bing.com/th/id/OIP.ZeNw76C8HW_XfiTPdomp7QAAAA?w=255&h=207&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Step 6">
+        </div>
+    </div>
+</body>
+</html>

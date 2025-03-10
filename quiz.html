@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>This or That Quiz Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=East+Sea+Dokdo&family=Honk&family=IM+Fell+French+Canon+SC&family=Kings&family=Mea+Culpa&family=Pinyon+Script&family=Stylish&family=Yatra+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: "East Sea Dokdo", serif;
+      font-weight: 400;
+      font-style: normal;
+      overflow: hidden;
+      background: url('https://th.bing.com/th/id/OIP.u5WIayoFxU1Nm-IM8bLJFAHaEK?w=324&h=182&c=7&r=0&o=5&dpr=1.5&pid=1.7') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+    }
+
+    #quiz-container {
+      
+      padding: 3px;
+      border-radius: 50px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      width: 600px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 5px;
+    }
+
+    .question-container {
+      margin-bottom: 2px;
+      padding: 5px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    .option {
+      padding: 5px 5px;
+      background-color: #379fbf;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 8px;
+      width: 45%;
+    }
+
+    .option:disabled {
+      background-color: #590202;
+    }
+
+    #result {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    #buttons-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    #submit-btn,
+    #shuffle-btn {
+      width: 20%;
+      padding: 10px;
+      background-color: #6e5ba2;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 13px;
+      margin: 10px 0;
+    }
+
+    #shuffle-btn {
+      display: none;
+    }
+
+    .selected {
+      background-color: #1e4a67;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="quiz-container">
+    <div id="question-container">
+      <div class="question-container" id="q1">
+        <div class="options">
+          <button class="option" onclick="selectAnswer('q1', 'Coffee')">Coffee</button>
+          <button class="option" onclick="selectAnswer('q1', 'Tea')">Tea</button>
+        </div>
+      </div>
+      <div class="question-container" id="q2">
+        <div class="options">
+          <button class="option" onclick="selectAnswer('q2', 'Skincare')">Skincare</button>
+          <button class="option" onclick="selectAnswer('q2', 'Makeup')">Makeup</button>
+        </div>
+      </div>
+      <div class="question-container" id="q3">
+        <div class="options">
+          <button class="option" onclick="selectAnswer('q3', 'Rom com Series')">Rom com Series</button>
+          <button class="option" onclick="selectAnswer('q3', 'Comedy Movies')">Comedy Movies</button>
+        </div>
+      </div>
+      <div class="question-container" id="q4">
+        <div class="options">
+          <button class="option" onclick="selectAnswer('q4', 'Sleeping')">Sleeping</button>
+          <button class="option" onclick="selectAnswer('q4', 'Shopping')">Shopping</button>
+        </div>
+      </div>
+      <div class="question-container" id="q5">
+        <div class="options">
+          <button class="option" onclick="selectAnswer('q5', 'Beach')">Beach</button>
+          <button class="option" onclick="selectAnswer('q5', 'Mountains')">Mountains</button>
+        </div>
+      </div>
+      <div class="question-container" id="q6">
+        <div class="options">
+          <button class="option" onclick="selectAnswer('q6', 'Sunset')">Sunset</button>
+          <button class="option" onclick="selectAnswer('q6','Sunrise')">Sunrise</button>
+        </div>
+      </div>
+      <div class="question-container" id="q7">
+        <div class="options">
+          <button class="option" onclick="selectAnswer('q7', 'Staying in')">Staying in</button>
+          <button class="option" onclick="selectAnswer('q7','Going out')">Going out</button>
+        </div>
+      </div>
+      <div class="question-container" id="q8">
+        <div class="options">
+          <button class="option" onclick="selectAnswer('q8', 'Spicy')">Spicy</button>
+          <button class="option" onclick="selectAnswer('q8','Sweet')">Sweet</button>
+        </div>
+      </div>
+    </div>
+    <div class="question-container" id="q9">
+      <div class="options">
+        <button class="option" onclick="selectAnswer('q9', 'Early morning')">Early morning</button>
+        <button class="option" onclick="selectAnswer('q9', 'Late night')">Late night</button>
+      </div>
+    </div>
+    <div class="question-container" id="q10">
+      <div class="options">
+        <button class="option" onclick="selectAnswer('q10', 'Pizza')">Pizza</button>
+        <button class="option" onclick="selectAnswer('q10', 'Momo')">Momo</button>
+      </div>
+    </div>
+    <div class="question-container" id="q11">
+      <div class="options">
+        <button class="option" onclick="selectAnswer('q11', 'Matching outfits')">Matching outfits</button>
+        <button class="option" onclick="selectAnswer('q11', 'Coordinated accessories')">Coordinated accessories</button>
+      </div>
+    </div>
+    <div class="question-container" id="q12">
+      <div class="options">
+        <button class="option" onclick="selectAnswer('q12', 'Sneakers')">Sneakers</button>
+        <button class="option" onclick="selectAnswer('q12', 'Sandals')">Sandals</button>
+      </div>
+    </div>
+
+    <div id="buttons-container">
+      <button id="submit-btn" onclick="calculateScore()">Submit</button>
+      <button id="shuffle-btn" onclick="resetGame()">Play Again</button>
+    </div>
+    
+    <div id="result" style="display:none;"></div>
+  </div>
+
+  <script>
+    const correctAnswers = {
+      q1: "Coffee",
+      q2: "Skincare",
+      q3: "Rom com Series",
+      q4: "Shopping",
+      q5: "Beach",
+      q6: "Sunset",
+      q7: "Staying in",
+      q8: "Spicy",
+      q9: "Late night",
+      q10: "Momo",
+      q11: "Matching outfits",
+      q12: "Sneakers"
+    };
+
+    let score = 0;
+
+    function selectAnswer(questionId, selectedAnswer) {
+      const buttons = document.querySelectorAll(`#${questionId} .option`);
+      
+      buttons.forEach(button => {
+        if (button.textContent === selectedAnswer) {
+          button.classList.add('selected');
+          button.disabled = true;
+        } else {
+          button.classList.remove('selected');
+          button.disabled = false;
+        }
+      });
+
+      if (selectedAnswer === correctAnswers[questionId]) {
+        score++;
+      }
+    }
+
+    function calculateScore() {
+      const resultElement = document.getElementById("result");
+      resultElement.style.display = "block";
+    
+      if (score < 5) {
+        resultElement.innerHTML = `Oops, your score is <strong>${score}</strong> out of 12. Now it's time to gift me a Kinderjoy 🍫!`;
+      } else if (score < 10) {
+        resultElement.innerHTML = `Keep going, one day you'll get to know me perfectly ❤️. Your score is <strong>${score}</strong> out of 12.`;
+      } else {
+        resultElement.innerHTML = `What a perfect guy! I love you ❤️!! Your score is <strong>${score}</strong> out of 12.`;
+      }
+    
+      document.getElementById("submit-btn").style.display = "none";
+      document.getElementById("shuffle-btn").style.display = "block";
+    }
+
+    function resetGame() {
+      score = 0;
+      document.querySelectorAll(".option").forEach(button => {
+        button.disabled = false;
+        button.classList.remove('selected');
+      });
+
+      document.getElementById("result").style.display = "none";
+      document.getElementById("submit-btn").style.display = "block";
+      document.getElementById("shuffle-btn").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

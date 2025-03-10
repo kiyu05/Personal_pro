@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wish</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=East+Sea+Dokdo&family=Honk&family=IM+Fell+French+Canon+SC&family=Kings&family=Mea+Culpa&family=Pinyon+Script&family=Stylish&family=Yatra+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+        background: url('https://th.bing.com/th/id/OIP.u5WIayoFxU1Nm-IM8bLJFAHaEK?w=324&h=182&c=7&r=0&o=5&dpr=1.5&pid=1.7') no-repeat center center/cover;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+      font-family: "East Sea Dokdo", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    .fountain {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: #5c685d;
+        position: relative;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+      }
+
+    .coin {
+      font-size: 50px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .coin:hover {
+      transform: scale(1.2);
+    }
+
+    .wish-box {
+        display: none;
+        padding: 15px;
+        
+        color: black;
+        position: absolute;
+        bottom: -80px;
+        width: 250px;
+        text-align: center;
+        border-radius: 10px;
+        font-size: 18px;
+        animation: fadeIn 1s ease;
+        font-size: 1.5rem;
+      }
+
+      #above-text {
+      
+        font-size: 30px; /* Adjust size */
+        
+        color: #3615c6; /* Change to desired color */
+        text-align: center; /* Center align */
+        margin-bottom: 10px; /* Add space below */
+
+        font-family: "Stylish", serif;
+  font-weight: 400;
+  font-style: normal;
+      }
+      
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  
+
+  <div id="above-text" style="font-size: 20px; font-weight: bold; text-align: center; margin-bottom: 10px;">
+    CLICK THIS OWL
+  </div>
+  <div class="fountain">
+    <div class="coin" onclick="makeAWish()">🦉</div>
+    <div id="wish-box" class="wish-box"></div>
+  </div>
+
+  
+
+  <script>
+    function makeAWish() {
+        const wishes = [
+          "I promise to love you forever and always. 💖",
+          "I promise, together, we will create a beautiful future. 🌸",
+          "I promise, no matter what happens, I'll be by your side. 👫",
+          "Every moment with you is a treasure. 💎",
+          "I wish for endless joy in our journey together. ✨",
+          "You are my heart's one and only wish. 💌",
+          "Together, we can conquer anything. 🌍"
+        ];
+      
+        const wishBox = document.getElementById('wish-box');
+        const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+      
+        wishBox.textContent = randomWish;
+        wishBox.style.display = 'block';
+      }
+      
+  </script>
+
+</body>
+</html>
