@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OUR_SPACE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Page 1 -->
+    <div id="page1">
+        <div class="container">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="checkPassword()">Submit</button>
+            <p id="error-message" class="error"></p>
+        </div>
+    </div>
+
+    <!-- Page 2 -->
+    <div id="page2">
+        <div class="content">
+            <h1>OUR SPACE, HELLO BABY!! 🦉</h1>
+            <h5>DEAR PASANDEEDA DARD, I MEAN INSAAN</h5>
+            <h5>Built with love ❤️, just for you 🌹</h5>
+        </div>
+        <button onclick="showPage('page3')" class="next-button">Next</button>
+    </div>
+
+    <div id="page3" class="page active">
+        <div class="menu">
+            <ul>
+                <li><a href="#" onclick="openIframe('journey.html')">Our journey</a></li>
+                <li><a href="#" onclick="openIframe('Flowers.html')">Flowers for u</a></li>
+                <li><a href="#" onclick="openIframe('heart.html')">Heartbeat</a></li>
+                <li><a href="#" onclick="openIframe('longdistance.html')">Long distance</a></li>
+                <li><a href="#" onclick="openIframe('foryou.html')">For you</a></li>
+                <li><a href="#" onclick="openIframe('fireworks.html')">Colors</a></li>
+                <li><a href="#" onclick="openIframe('ourfuture.html')">Our future</a></li>
+                <li><a href="#" onclick="openIframe('Reasons.html')">Reasons I love you</a></li>
+                <li><a href="#" onclick="openIframe('loveletter.html')">Love letter</a></li>
+                <li><a href="#" onclick="openIframe('wish.html')">Promise</a></li>
+                <li><a href="#" onclick="openIframe('maze.html')">Find Me</a></li>
+                <li><a href="#" onclick="openIframe('image.html')">Puzzle</a></li>
+                <li><a href="#" onclick="openIframe('quiz.html')">Quiz</a></li>
+                <li><a href="#" onclick="openIframe('Ending.html')">Ending</a></li>
+            </ul>
+        </div>
+        <button onclick="showPage('page2')" class="back-button">Back</button>
+        <iframe id="content-frame"></iframe>
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
